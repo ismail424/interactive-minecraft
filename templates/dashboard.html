@@ -11,7 +11,14 @@
 </head>
 <body>
 
-    <p>{{ username }}</p>
+    <p>Inloggad som {{ username }}</p>
+
+    <h3>List of all players:</h3>
+
+    <ul id="users_list"></ul>
+
+    <button onclick="mc_list()">List</button>
+
     <a href="/logout">Logout</a>
 
 </body>
