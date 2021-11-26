@@ -1,3 +1,172 @@
-body {
-    background: antiquewhite;
+* {
+ margin: 0;
+ padding: 0;
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+body {
+    background: #222D32;
+    font-family: 'Roboto', sans-serif;
+}
+#login-form{
+    width: 380px;
+	height: auto;
+	background: #fdbf6b;
+	border-radius: 5px;
+	box-shadow: 0 2px 8px rgba(0,0,0,.05);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	padding: 40px 30px;
+    background: #1A2226;
+}
+
+
+#login-form input[type=submit]{
+    color: #0DB8DE;
+    color: #007bff;
+    font-size: 26px;
+    background-color: transparent;
+    background-image: none;
+    border-color: #007bff;
+    border-radius: 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);    
+    width: 100%;
+    height: 50px;
+}
+
+#join {
+    color: white;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+#login-form input[type=text] {
+    width: 100%;
+    height: 40px;
+    background-color: #1A2226;
+    border: none;
+    border-bottom: 2px solid #0DB8DE;
+    border-top: 0px;
+    font-size: 18px;
+    font-weight: bold;
+    outline: 0;
+    margin-bottom: 20px;
+    padding-left: 0px;
+    color: #fff;
+}
+#login-form label{
+    font-size: 13px;
+    color: #6C6C6C;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+#logo {
+    width: auto;
+    height: 36px;
+}
+
+.mobile-container {
+    max-width: 480px;
+    margin: auto;
+    background-color: #555;
+    height: 500px;
+    color: white;
+    border-radius: 10px;
+}
+  
+header {
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+}
+
+footer {
+  background-color: #1A2226;
+  color: #fff;
+  padding: 30px 0px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+header #myLinks {
+    display: none;
+}
+  
+header a {
+    color: white;
+    padding: 16px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+}
+  
+header a.icon {
+    background: black;
+    display: block;  
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+header .fa{
+    font-size: 40px !important;
+}
+  
+header a:hover {
+    background-color: #ddd;
+    color: black;
+}
+  
+.active {
+    background-color: #1A2226;
+    color: white;
+}
+
+#style_wrapper {
+    background-color: rgb(137, 201, 77);
+    border-radius: 5px;
+    height: 300px;
+    width: 500px;
+    align-items: center;
+    padding: 10px;
+}
+
+footer p {
+    color: white;
+}
+
+.container{
+  width: 100%;
+  margin: 2% 7%;
+
+}
+
+/* mobile css co-pilot :))))))))) */
+@media only screen and (max-width: 480px) {
+    #login-form{
+        width: 70%;
+        height: auto;
+        background: #fdbf6b;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0,0,0,.05);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        padding: 40px 30px;
+        background: #1A2226;
+    }
+    body{
+      width: 100% !important;
+    }
+  
+}
+

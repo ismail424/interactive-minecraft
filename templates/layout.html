@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js" integrity="sha512-zN6KYOtONNTOGXz0RkWX2EpavN9VdIs+2w+To+fhciFv83YA9maUpi2lzZWrOfKXdFIZZomWufBznkyHi3a8oQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="icon" type="image/x-icon" href="https://www.net-aware.org.uk/siteassets/images-and-icons/application-icons/app-icon-minecraft.png?w=585&scale=down">
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{% block title %} {% endblock %}</title>
+    {% block style %} {% endblock %}
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myLinks");
+          if (x.style.display === "block") {
+            x.style.display = "none";
+          } else {
+            x.style.display = "block";
+          }
+        }
+        </script>
+</head>
+<body>
+    <!-- header -->
+    <div id="wrapper">
+        <header>
+            <a href="#home" class="active"><img id="logo" src="{{url_for('static', filename='images/minecraft-logo.png')}}" alt="Minecraft Interactive logo"></a>
+            <div id="myLinks">
+                <a href="#news">News</a>
+                <a href="#contact">Contact</a>
+                <a href="#about">About</a>
+                <a href="/logout">Logout</a>
+            </div>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        </header>
+        {% block content %} {% endblock %}
+        <footer>
+            <p>&copy; Copyright 2021 - Intreactive Minecraft</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,14 +1,13 @@
 #flask
-import flask
 from flask import Flask, render_template, request, redirect, url_for, sessions, session
 from flask_socketio import SocketIO, emit
 from functions import *
 import os
 import json
-from mcrcon import MCRcon 
+from mctools import RCONClient 
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.config['SECRET_KEY'] = os.urandom(24)
 socketio = SocketIO(app)
 
 
@@ -19,6 +18,7 @@ RCON_IP = config['rcon_ip']
 RCON_PASSWORD = config['rcon_password']
 RCON_PORT = config['rcon_port']
 
+rcon = RCONClient(RCON_IP, port=RCON_PORT)
 
 all_users = []
 
@@ -26,7 +26,7 @@ all_users = []
 def index():
     if session.get('username'):
         return redirect(url_for('dashboard'))
-    return render_template('index.html')
+    return render_template('login.html')
 
 @app.route('/join', methods=['POST'])
 def join():
@@ -36,7 +36,7 @@ def join():
     username = request.form.get('username')
     for user in all_users:
         if user['username'] == username:
-            return render_template('index.html', error='Username already taken, choose another username!')
+            return render_template('login.html', error='Username already taken, choose another username!')
     
     random_token = random_string(15)
     all_users.append({"token": random_token, "username": username})
@@ -76,7 +76,7 @@ def check_all_users():
     usernames_from_all_users = []
     for user in all_users:
         usernames_from_all_users.append(user['username'])
-    return json.dumps(usernames_from_all_users) 
+    return json.dumps(usernames_from_all_users)
 
 def get_all_usernames():
     global all_users
@@ -91,13 +91,14 @@ def update_all_users():
     emit('all_users', usernames)
 
 
-@app.route('/mc-list')
-def get_minecraft_players():
-    with MCRcon(RCON_IP, RCON_PASSWORD, RCON_PORT) as mcr:
-        resp = mcr.command("list")
-    return resp
-
-
-
+def run_command(command: str):
+    try:
+        if rcon.login(RCON_PASSWORD):
+            resp = rcon.command(command)
+        return resp
+    except Exception as e:
+        print(e)
+        return "error"
+    
 if __name__ == "__main__":
     socketio.run(app, debug=True, port=5000, host='0.0.0.0')
