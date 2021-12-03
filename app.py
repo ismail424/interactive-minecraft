@@ -1,9 +1,11 @@
 #flask
 from re import M
 from flask import Flask, render_template, request, redirect, url_for, sessions, session
+from werkzeug.utils import import_string
 from flask_socketio import SocketIO, emit
 from functions import *
 import os
+import re
 import json
 from mctools import RCONClient 
 import requests
@@ -114,7 +116,7 @@ def run_command(command: str):
         return resp
     except Exception as e:
         print(e)
-        return "error"
+        return e
     
 #fetch minecraft profile picture api
 def get_profile_picture(username: str):
@@ -130,16 +132,25 @@ def get_profile_picture(username: str):
         uuid = "0"
         url = "https://crafatar.com/avatars/1?overlay"
         return url, uuid
-    
+def escape_ansi(line):
+    ansi_escape = re.compile(r'(?:\x1B[@-_]|[\x80-\x9F])[0-?]*[ -/]*[@-~]')
+    return ansi_escape.sub('', line)
+
 def online_minecraft_players():
     mc_players = run_command("list")
-    mc_players = mc_players.replace("There are 1 of a max of 20 players online:", "")
-    new_minecraft_players = []
-    print(mc_players)
-    # for player in mc_players:                                           
-    #     player = player.replace("\x1b[0m", "")
-    #     avatar, uuid = get_profile_picture(player)
-    #     new_minecraft_players.append({"username": player, "uuid": uuid, "avatar": avatar})
-    return new_minecraft_players
+    mc_players = mc_players.split("online: ")[1]
+    mc_players = escape_ansi(mc_players)
+    if mc_players != "":
+        mc_players = mc_players.split(", ")
+        new_minecraft_players = []    
+        for player in mc_players:                                           
+            player = player.replace("\x1b[0m", "")
+            avatar, uuid = get_profile_picture(player)
+            new_minecraft_players.append({"username": player, "uuid": uuid, "avatar": avatar})
+        return new_minecraft_players
+    else:
+        return []
+
 if __name__ == "__main__":
-    online_minecraft_players()
+
+    socketio.run(app, debug=True, host="0.0.0.0", port=5000)
