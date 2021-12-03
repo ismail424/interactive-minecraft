@@ -1,15 +1,41 @@
 {% extends 'layout.html' %}
 {% block title %} Dashboard {% endblock %}
 {% block content %}
+<div class="container">
 
-        <div id="style_wrapper">
-            <h3>Logged in as {{ username }}</h3>
+    <div id="style_wrapper">
+        <div class="minecraft_status">
+            <h1>Minecraft Server: 
+                {% if status == True %}
+                    <span class="online">Online</span>
+                {% else %}
+                    <span class="offline">Offline</span>
+                {% endif %}
+            </h1>
 
-            <h3>List of all players:</h3>
-
-            <ul id="users_list"></ul>
-
-            <button onclick="mc_list()">List</button>
         </div>
+        
+        <br>
+        <h3>Crewmates:</h3>
+        <ul id="users_list" style="padding-left: 2em;"></ul>
+        <br>
+        <h3>Minecraft players:</h3>
+        <div style="margin-top: 4px;">
+
+            {% for mc_play in online_mc_players %}
+                <figure>
+                    <img src="{{ mc_play.avatar }}" alt="{{ mc_play.username }}">
+                    <figcaption>{{ mc_play.username }}</figcaption>
+                </figure>
+              
+
+
+            {% endfor %}
+        </div>
+    
+    </div>
+
+
+</div>
 
 {% endblock %}

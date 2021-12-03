@@ -12,7 +12,7 @@
     <title>{% block title %} {% endblock %}</title>
     {% block style %} {% endblock %}
     <script>
-        function myFunction() {
+        function hamburger_menu() {
           var x = document.getElementById("myLinks");
           if (x.style.display === "block") {
             x.style.display = "none";
@@ -26,22 +26,30 @@
     <!-- header -->
     <div id="wrapper">
         <header>
-            <a href="#home" class="active"><img id="logo" src="{{url_for('static', filename='images/minecraft-logo.png')}}" alt="Minecraft Interactive logo"></a>
+            <div class="active">
+                <img id="logo" src="{{url_for('static', filename='images/minecraft-logo.png')}}" alt="Minecraft Interactive logo">
+            </div>
             <div id="myLinks">
-                <a href="#news">News</a>
-                <a href="#contact">Contact</a>
-                <a href="#about">About</a>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/commands">Give Commands</a>
+                <a href="/weather">Change The Weather</a>
+                <a href="/potions">Potions</a>
                 <a href="/logout">Logout</a>
             </div>
-                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <a style="" class="icon" onclick="hamburger_menu()">
                 <i class="fa fa-bars"></i>
             </a>
         </div>
         </header>
         {% block content %} {% endblock %}
-        <footer>
-            <p>&copy; Copyright 2021 - Intreactive Minecraft</p>
+
+        <footer id="points">
+            <span> Your total points: <span>{{user_points}}</span></span>
         </footer>
+        <footer id="username">
+            <span><span> Logged in as: {{username}}</span></span>
+        </footer>
+
     </div>
 </body>
 </html>

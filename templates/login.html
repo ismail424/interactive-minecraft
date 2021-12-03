@@ -11,9 +11,9 @@
     <form action="/join" id="login-form" method="post">
         <h1 id="join">Join the server</h1>
         <label for="username">Username:</label>
-        <input type="text" name="username" id="username"">
+        <input minlength="3" maxlength="15" type="text" name="username" id="username_login"">
         <input type="submit" id="submit" value="Join">
-        <p>{{error}}</p>
+        <p id="error_code">{{error}}</p>
     </form>
 </body>
 </html>
