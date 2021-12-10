@@ -186,7 +186,37 @@ footer p {
     font-size: 20px !important;
     font-weight: bold;
 }
+.commands{
+    display: block;
+    margin: 10px 0px;
+    border-radius: 10px;
+    border: 0;
+    background-color: #1A2226;
+    font-weight: 500;
+    color: whitesmoke;
+    padding: 20px 50px;
+    font-size: 25px !important;
+    cursor: pointer;
+}
 
+.titel{
+    font-size: 50px !important;
+    margin: 5px 0px;
+    font-weight: bold;
+    font-weight: 900;
+    text-transform: uppercase;
+    shape-image-threshold: calc(0.5 * var(--shape-image-threshold));
+    stroke: url(#gradient);
+    stroke-width: 2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    
+}
+
+.commands:hover{
+    background-color: #1a2226c5;
+}
 
 .online{
     color: #78b13f;

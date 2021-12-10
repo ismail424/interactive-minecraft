@@ -1,6 +1,7 @@
 #flask
 from re import M
 from flask import Flask, render_template, request, redirect, url_for, sessions, session
+from apscheduler.schedulers.background import BackgroundScheduler
 from werkzeug.utils import import_string
 from flask_socketio import SocketIO, emit
 from functions import *
@@ -9,6 +10,8 @@ import re
 import json
 from mctools import RCONClient 
 import requests
+from datetime import datetime
+from apscheduler.schedulers.blocking import BlockingScheduler
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
@@ -24,7 +27,6 @@ RCON_PORT = config['rcon_port']
 rcon = RCONClient(RCON_IP, port=RCON_PORT)
 
 all_users = []
-user_points = 0
 
 @app.route('/')
 def index():
@@ -42,6 +44,9 @@ def join():
     username = request.form.get('username')
     username = username.strip()
     username = username.replace(" ", "")
+    if len(username) < 3:
+        print("Username too short")
+        return redirect(url_for('index'))
     if len(username) > 15:
         username = username[:15]
     for user in all_users:
@@ -49,7 +54,7 @@ def join():
             return render_template('login.html', error='Username already taken, choose another username!')
     
     random_token = random_string(15)
-    all_users.append({"token": random_token, "username": username})
+    all_users.append({"token": random_token, "username": username, "points": 0})
     
     session["username"] = username
     session["token"] = random_token
@@ -64,7 +69,11 @@ def dashboard():
         username = session.get('username')
         status = check_server_status(rcon, RCON_PASSWORD)
         online_mc_players = online_minecraft_players()
-        return render_template('dashboard.html', username=username, user_points=user_points, status=status, online_mc_players=online_mc_players)
+        if len(online_mc_players) == 0:
+            online_mc_players = False
+        user_info = get_user_by_username(all_users,username)
+
+        return render_template('dashboard.html', user_info=user_info,status=status, online_mc_players=online_mc_players)
     return redirect(url_for('index'))
 
 @app.route('/logout')
@@ -87,15 +96,27 @@ def check_all_users():
 
 @app.route('/commands')
 def commands():
-    return render_template('commands.html')
+    global all_users
+    if check_user(session, all_users):
+        user_info = get_user_by_username(all_users, session.get('username'))
+        return render_template('commands.html',user_info=user_info)
+    return redirect(url_for('index'))
 
 @app.route('/potions')
 def potions():
-    return render_template('potions.html')
+    global all_users
+    if check_user(session, all_users):
+        user_info = get_user_by_username(all_users, session.get('username'))
+        return render_template('potions.html',user_info=user_info)
+    return redirect(url_for('index'))
 
 @app.route('/weather')
 def weather():
-    return render_template('weather.html')
+    global all_users
+    if check_user(session, all_users):
+        user_info = get_user_by_username(all_users, session.get('username'))
+        return render_template('weather.html',user_info=user_info)
+    return redirect(url_for('index'))
 
 def get_all_usernames():
     global all_users
@@ -118,7 +139,7 @@ def run_command(command: str):
         print(e)
         return e
     
-#fetch minecraft profile picture api
+#Fetch minecraft profile picture API
 def get_profile_picture(username: str):
     url = f"https://api.mojang.com/users/profiles/minecraft/{username}"
     try:
@@ -132,6 +153,7 @@ def get_profile_picture(username: str):
         uuid = "0"
         url = "https://crafatar.com/avatars/1?overlay"
         return url, uuid
+    
 def escape_ansi(line):
     ansi_escape = re.compile(r'(?:\x1B[@-_]|[\x80-\x9F])[0-?]*[ -/]*[@-~]')
     return ansi_escape.sub('', line)
@@ -151,6 +173,15 @@ def online_minecraft_players():
     else:
         return []
 
-if __name__ == "__main__":
+#Run this function every 5 seconds
+def add_points():
+    global all_users    
+    for user in all_users:
+        user["points"] += 10
+        socketio.emit('points', {'points': user["points"], 'username': user["username"]})
 
+if __name__ == "__main__":
+    sched = BackgroundScheduler()
+    sched.add_job(func=add_points,trigger='interval',seconds=5)
+    sched.start()
     socketio.run(app, debug=True, host="0.0.0.0", port=5000)

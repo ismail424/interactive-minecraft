@@ -16,25 +16,25 @@
         </div>
         
         <br>
-        <h3>Crewmates:</h3>
+        <h3>Online players:</h3>
         <ul id="users_list" style="padding-left: 2em;"></ul>
         <br>
         <h3>Minecraft players:</h3>
         <div style="margin-top: 4px;">
-
-            {% for mc_play in online_mc_players %}
-                <figure>
-                    <img src="{{ mc_play.avatar }}" alt="{{ mc_play.username }}">
-                    <figcaption>{{ mc_play.username }}</figcaption>
-                </figure>
-              
-
-
-            {% endfor %}
+            {% if online_mc_players == False  %}
+                <p style="font-size:15px;">There is no active minecraft players</p>
+            {% else %}
+                {% for mc_play in online_mc_players %}
+                    <figure>
+                        <img src="{{ mc_play.avatar }}" alt="{{ mc_play.username }}">
+                        <figcaption>{{ mc_play.username }}</figcaption>
+                    </figure>
+                {% endfor %}
+            {% endif %}
+ 
         </div>
     
     </div>
-
 
 </div>
 

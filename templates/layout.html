@@ -31,7 +31,7 @@
             </div>
             <div id="myLinks">
                 <a href="/dashboard">Dashboard</a>
-                <a href="/commands">Give Commands</a>
+                <a href="/commands">Command center</a>
                 <a href="/weather">Change The Weather</a>
                 <a href="/potions">Potions</a>
                 <a href="/logout">Logout</a>
@@ -44,12 +44,16 @@
         {% block content %} {% endblock %}
 
         <footer id="points">
-            <span> Your total points: <span>{{user_points}}</span></span>
-        </footer>
-        <footer id="username">
-            <span><span> Logged in as: {{username}}</span></span>
+            <div> Username: <span>{{user_info["username"]}}</span></div>
+            <div> Points: <span id="points_int">{{user_info["points"]}}</span></div>
         </footer>
 
     </div>
+    <script>
+        var user_info = {
+            "username": "{{user_info["username"]}}",
+            "points": {{user_info["points"]}}
+        };
+    </script>
 </body>
 </html>
