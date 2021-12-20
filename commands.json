@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "name": "Day",
+        "description": "Set time to day",
+        "mc_command": true,
+        "command": "time set day",
+        "price": 1000,
+        "icon": "https://bit.ly/3JhFsOz"
+    },
+
+    {
+        "id": 2,
+        "name": "Night",
+        "description": "Set time to night",
+        "mc_command": true,
+        "command": "time set night",
+        "price": 800,
+        "icon": "https://bit.ly/3EezdHh"
+    },
+    
+    {
+        "id": 3,
+        "name": "Zombie",
+        "description": "Spawn a zombie",
+        "mc_command": true,
+        "command": "execute at @a run summon minecraft:zombie ^ ^ ^",
+        "price": 600,
+        "icon": "https://bit.ly/3F9AEYV"
+    },
+    {
+        "id": 4,
+        "name": "Zombie TEST",
+        "description": "Spawn a zombie TEST",
+        "mc_command": true,
+        "command": "execute at @a run summon minecraft:zombie ^ ^ ^",
+        "price": 1,
+        "icon": "https://bit.ly/3F9AEYV"
+    }
+
+]

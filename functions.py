@@ -1,5 +1,6 @@
 import random
 import string
+import json
 
 def random_string(length):
     return str(''.join(random.choice(string.ascii_letters) for i in range(length)))
@@ -36,7 +37,24 @@ def check_server_status(rcon, RCON_PASSWORD):
     except:
         return False
     
-    
+
+def get_command_by_id(id: int):
+    with open('commands.json', 'r') as f:
+        commands = json.load(f)
+    for command in commands:
+        if command['id'] == id:
+            return command['command']
+    return None
+
+def get_points_by_id(id:int):
+    with open('commands.json', 'r') as f:
+        points = json.load(f)
+    for point in points:
+        if point['id'] == id:
+            return point['price']
+    return None
+
+
 ITEM_LIST = [
     'minecraft:stone',
     'minecraft:grass',

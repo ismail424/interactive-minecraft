@@ -139,10 +139,11 @@ header a {
   
 header a.icon {
     background: black;
-    display: block;  
+    display: block;
     position: absolute;
     right: 0;
     top: 0;
+    cursor: pointer;
 }
 
 header .fa{
@@ -151,7 +152,6 @@ header .fa{
   
 .active {
     background-color: #1A2226;
-    padding: 15.7px 0px;
     color: white;
 }
 .container{
@@ -163,6 +163,7 @@ header .fa{
     padding: 15px 20px;
     border-radius: 10px;
     align-items: center;
+    height: auto;
 }
 
 #style_wrapper * {
@@ -199,7 +200,7 @@ footer p {
     cursor: pointer;
 }
 
-.titel{
+.titel {
     font-size: 50px !important;
     margin: 5px 0px;
     font-weight: bold;
@@ -211,7 +212,7 @@ footer p {
     stroke-linecap: round;
     stroke-linejoin: round;
     fill: none;
-    
+    text-align: center;
 }
 
 .commands:hover{
@@ -240,6 +241,7 @@ figure img{
 }
 /* mobile css co-pilot :))))))))) */
 @media only screen and (max-width: 480px) {
+    
     #login-form{
         width: 70%;
         height: auto;
@@ -261,5 +263,145 @@ figure img{
       margin-top: 1em;
       padding: 0.05em 0.5em;
     }
+    .command {
+        width: 70vw !important;
+        height: 45vw !important;
+    }
+    .command_name {
+        font-size: 7vw !important;
+
+    }
+    .command_price {
+        font-size: 5vw !important;
+
+    }
+    .titel{
+        font-size: 5vw !important;
+    }
+    #price_popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -100px;
+        background-color: white;
+        border-radius: 30px;
+        font-size: 20vw !important;
+   
+    }
+    #not_enough_popup{
+        left: 0% !important;
+    }
 }
 
+/* command css 我喜欢共产主义 */
+
+.command {
+    position: relative;
+    padding: 10px 20px;
+    border: 2px rgb(56, 56, 56) solid;
+    display: inline-block;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-radius: 10px;
+    width: 400px;
+    height: 140px;
+}
+
+.command_img {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 10px;
+    top: 10px;
+}
+
+.command_points {
+    position: absolute;
+}
+
+.command_name {
+    position: absolute;
+    top: 15px;
+    left: 65px;
+}
+
+.command_description {
+    position: absolute;
+    top: 65px;
+    max-width: 360px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    left: 10px;
+}
+
+.command_price {
+    position: absolute;
+    font-weight: 700;
+    top: 0px;
+    right: 0px;
+    margin: 10px;
+}
+
+.command_button {
+    position: absolute;
+    bottom: 0px;
+    padding: 2px 40px;
+    margin: auto;
+    right: 0px;
+    margin: 15px 10px;
+    color: white;
+    background-color: green;
+    font-size: 26px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);  
+}
+.command_button:hover {
+    background-color: rgb(7, 85, 7);
+}
+
+
+#price_popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    margin-top: -50px;
+    margin-left: -100px;
+    font-size: 6vw;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
+    color: red;
+}
+
+.price_popup_animation{
+    animation: alternate transform 1s;
+}
+
+#not_enough_popup {
+    display: none;
+    position: fixed;
+    background-color: white;
+    top: 20%;
+    left: 40%;
+    margin-top: -50px;
+    font-size: 30px !important;
+    margin-left: -40px;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
+    color: red;
+}
+
+#not_enough_popup p {
+    animation: transform 1s infinite ease-in-out;
+}
+
+
+@keyframes transform {
+	from { transform:scale(.1); }
+	to { transform:scale(1); }
+}

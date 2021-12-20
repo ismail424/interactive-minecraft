@@ -10,7 +10,14 @@
     <script src="{{url_for('static', filename='js/script.js')}}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{% block title %} {% endblock %}</title>
+    <script>
+        var user_info = {
+            "username": '{{user_info["username"]}}',
+            "points": {{user_info['points']}},
+        };
+    </script>
     {% block style %} {% endblock %}
+    {% block head %} {% endblock %}
     <script>
         function hamburger_menu() {
           var x = document.getElementById("myLinks");
@@ -21,13 +28,14 @@
           }
         }
         </script>
+    
 </head>
 <body>
     <!-- header -->
     <div id="wrapper">
         <header>
             <div class="active">
-                <img id="logo" src="{{url_for('static', filename='images/minecraft-logo.png')}}" alt="Minecraft Interactive logo">
+                <a href="/"><img id="logo" src="{{url_for('static', filename='images/minecraft-logo.png')}}" alt="Minecraft Interactive logo"></a>
             </div>
             <div id="myLinks">
                 <a href="/dashboard">Dashboard</a>
@@ -45,15 +53,10 @@
 
         <footer id="points">
             <div> Username: <span>{{user_info["username"]}}</span></div>
-            <div> Points: <span id="points_int">{{user_info["points"]}}</span></div>
+            <div> Points: <span id="points_int">{{user_info["points"]}}</span>¥</div>
         </footer>
 
     </div>
-    <script>
-        var user_info = {
-            "username": "{{user_info["username"]}}",
-            "points": {{user_info["points"]}}
-        };
-    </script>
+
 </body>
 </html>

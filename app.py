@@ -16,11 +16,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 socketio = SocketIO(app)
-{
-    "rcon_ip":"lin02.svaren.dev",
-    "rcon_port":25575,
-    "rcon_password":"Batteri"
-}
+
 with open('config.json', 'r') as f:
     config = json.load(f)
     
@@ -103,7 +99,9 @@ def commands():
     global all_users
     if check_user(session, all_users):
         user_info = get_user_by_username(all_users, session.get('username'))
-        return render_template('commands.html',user_info=user_info)
+        with open('commands.json', 'r') as f:
+            all_commands = json.load(f)
+        return render_template('commands.html',user_info=user_info, all_commands=all_commands)
     return redirect(url_for('index'))
 
 @app.route('/potions')
@@ -129,6 +127,26 @@ def get_all_usernames():
         usernames.append(user['username'])
     return usernames
 
+@socketio.on("mc-command")
+def run_mc_command(data):
+    try:
+        global all_users
+        username = str(data["username"])
+        command_id = int(data["command_id"])
+        for user in all_users:
+            if user["username"] == username:
+                current_user_points = user["points"]
+        
+        command = get_command_by_id(command_id)
+        points = get_points_by_id(command_id)
+        if current_user_points >= points: 
+            if command:
+                run_command(command)
+            remove_points(username, points)
+     
+    except Exception as e:
+        print(e)
+        pass
 @socketio.on('get_all_users')
 def update_all_users():
     usernames = get_all_usernames()
@@ -183,6 +201,14 @@ def add_points():
     for user in all_users:
         user["points"] += 10
         socketio.emit('points', {'points': user["points"], 'username': user["username"]})
+        
+def remove_points(username:str, points:int):
+    global all_users
+    for user in all_users:
+        if user["username"] == username:
+            user["points"] -= points
+            socketio.emit('points', {'points': user["points"], 'username': user["username"]})
+
 
 if __name__ == "__main__":
     sched = BackgroundScheduler()
