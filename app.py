@@ -16,7 +16,11 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 socketio = SocketIO(app)
-
+{
+    "rcon_ip":"lin02.svaren.dev",
+    "rcon_port":25575,
+    "rcon_password":"Batteri"
+}
 with open('config.json', 'r') as f:
     config = json.load(f)
     
