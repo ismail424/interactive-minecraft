@@ -36,6 +36,15 @@
         "command": "execute at @a run summon minecraft:zombie ^ ^ ^",
         "price": 1,
         "icon": "https://bit.ly/3F9AEYV"
+    },
+    {
+        "id": 5,
+        "name": "Ender Dragon",
+        "description": "Spawn a ender dragon",
+        "mc_command": true,
+        "command": "execute at @a run summon minecraft:ender_dragon ^ ^ ^",
+        "price": 900,
+        "icon": "https://i.imgur.com/FYfja.png"
     }
 
 ]

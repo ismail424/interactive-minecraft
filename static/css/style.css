@@ -339,6 +339,7 @@ figure img{
 .command_price {
     position: absolute;
     font-weight: 700;
+    font-size: 25px!important;
     top: 0px;
     right: 0px;
     margin: 10px;

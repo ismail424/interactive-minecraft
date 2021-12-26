@@ -139,7 +139,7 @@ def run_mc_command(data):
         
         command = get_command_by_id(command_id)
         points = get_points_by_id(command_id)
-        if current_user_points >= points: 
+        if current_user_points >= points:
             if command:
                 run_command(command)
             remove_points(username, points)
