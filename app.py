@@ -145,7 +145,13 @@ def run_mc_command(data):
             remove_points(username, points)
      
     except Exception as e:
+        import sys
+        print("Error")
         print(e)
+        print(data)
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        print(exc_type, fname, exc_tb.tb_lineno)
         pass
 @socketio.on('get_all_users')
 def update_all_users():

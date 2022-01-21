@@ -24,7 +24,6 @@ body {
     background: #1A2226;
 }
 
-
 #login-form input[type=submit]{
     color: #0DB8DE;
     color: #007bff;
@@ -74,8 +73,6 @@ body {
     height: 36px;
     padding-left: 3px;
 }
-
-
   
 header {
     overflow: hidden;
@@ -166,10 +163,6 @@ header .fa{
     height: auto;
 }
 
-#style_wrapper * {
-    font-size: 30px;
-}
-
 footer p {
     color: white;
 }
@@ -256,28 +249,32 @@ figure img{
         background: #1A2226;
     }
 
-    body{
+    body {
       width: 100% !important;
     }
-    .container{
+
+    .container {
       margin-top: 1em;
       padding: 0.05em 0.5em;
     }
+
     .command {
         width: 70vw !important;
         height: 45vw !important;
     }
+
     .command_name {
         font-size: 7vw !important;
-
     }
+
     .command_price {
         font-size: 5vw !important;
-
     }
-    .titel{
+
+    .titel {
         font-size: 5vw !important;
     }
+
     #price_popup {
         position: fixed;
         top: 50%;
@@ -287,8 +284,8 @@ figure img{
         background-color: white;
         border-radius: 30px;
         font-size: 20vw !important;
-   
     }
+
     #not_enough_popup{
         left: 0% !important;
     }
@@ -325,15 +322,32 @@ figure img{
     position: absolute;
     top: 15px;
     left: 65px;
+    font-size: 20px;
+}
+
+#description {
+    margin: 5px!important;
+    background-color: #F4A460;
+    width: 200px;
+    height: auto;
+    min-height: 70px;
+    border-radius: 10px;
+    position: absolute;
+    top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    margin: 10px;
+    padding: 3px;
 }
 
 .command_description {
-    position: absolute;
-    top: 65px;
-    max-width: 360px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    left: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Trebuchet MS, sans-serif;
+    margin: 0 auto;
+    width: 90%;
 }
 
 .command_price {
@@ -364,7 +378,6 @@ figure img{
 .command_button:hover {
     background-color: rgb(7, 85, 7);
 }
-
 
 #price_popup {
     position: fixed;
@@ -405,4 +418,29 @@ figure img{
 @keyframes transform {
 	from { transform:scale(.1); }
 	to { transform:scale(1); }
+}
+
+#command_search, #filter, #submit {
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+#command_search {
+    position: absolute;
+    right: 50px;
+}
+
+#input_search, #price {
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+#command_search label, #sort_by {
+    color: white;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+#sort_by {
+    margin-left: 15px;
 }

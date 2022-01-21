@@ -1,50 +1,122 @@
 [
     {
         "id": 1,
+        "name": "Zombie",
+        "description": "Spawn a zombie, and make it follow the player.",
+        "mc_command": true,
+        "command": "execute at @a run summon minecraft:zombie ^ ^ ^",
+        "price": 50,
+        "icon": "https://bit.ly/3F9AEYV",
+        "subcategory": "spawn"
+    },
+    {
+        "id": 20,
+        "name": "Anvil",
+        "description": "Spawn an anvil, and make it crush the player.",
+        "mc_command": true,
+        "command": "execute at @a run setblock ~ ~5 ~ minecraft:anvil",
+        "price": 50,
+        "icon": "https://static.thenounproject.com/png/9637-200.png",
+        "subcategory": "spawn"
+    },
+    {
+        "id": 69,   
+        "name": "Teleport",
+        "description": "Teleport the player up a litle bit.",
+        "mc_command": true,
+        "command": "execute at @a run tp @p ~ ~3 ~",
+        "price": 1,
+        "icon": "data:image/jpeg;base64,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",
+        "subcategory": "spawn"
+    },
+    {
+        "id": 2,
+        "name": "Ender Dragon",
+        "description": "Spawn a ender dragon, just watch out!",
+        "mc_command": true,
+        "command": "execute at @a run summon minecraft:ender_dragon ^ ^ ^",
+        "price": 500,
+        "icon": "https://i.imgur.com/FYfja.png",
+        "subcategory": "spawn"
+    },
+    {
+        "id":3,
+        "name": "Skeleton",
+        "description": "Be annoying, and spawn a skeleton.",
+        "mc_command": true,
+        "command": "execute at @a run summon minecraft:skeleton ^ ^ ^",
+        "price": 30,
+        "icon": "https://scale.coolshop-cdn.com/product-media.coolshop-cdn.com/23496N/c82a80101a63472c9b96ff950a16db75.jpg/f/minecraft-8-5inch-large-figure-skeleton-ggr03.jpg",
+        "subcategory": "spawn"
+    },
+    {
+        "id":4,
+        "name": "Creeper",
+        "description": "Creeper, aww man",
+        "mc_command": true,
+        "command": "execute at @a run summon minecraft:creeper ^ ^ ^2",
+        "price": 100,
+        "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhskXzIQwMsBi2UtOJ-QkZLGU_2U2gW6AN_Q&usqp=CAU",
+        "subcategory": "spawn"
+    },
+    {
+        "id":5,
+        "name": "Spider",
+        "description": "Dont do it, it's scary D:",
+        "mc_command": true,
+        "command": "execute at @a run summon minecraft:spider ^ ^ ^",
+        "price": 200,
+        "icon": "https://preview.free3d.com/img/2016/03/2162666309643404566/ssl2u2rd-900.jpg",
+        "subcategory": "spawn"
+    },
+    {
+        "id": 500,
+        "name": "Clear",
+        "description": "Clear sky, no rain",
+        "mc_command": true,
+        "command": "weather clear",
+        "price": 1,
+        "icon": "data:image/jpeg;base64,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",
+        "subcategory": "weather"
+    },
+    {
+        "id": 501,
+        "name": "Rain",
+        "description": "Make it rain",
+        "mc_command": true,
+        "command": "weather rain",
+        "price": 50,
+        "icon": "https://www.freeiconspng.com/uploads/cloud-rain-icon-2.png",
+        "subcategory": "weather"
+    },
+    {
+        "id": 502,
+        "name": "Thunder",
+        "description": "Even worse than rain :(",
+        "mc_command": true,
+        "command": "weather thunder",
+        "price": 100,
+        "icon": "https://img.icons8.com/external-kmg-design-flat-kmg-design/344/external-thunder-weather-kmg-design-flat-kmg-design.png",
+        "subcategory": "weather"
+    },
+    {
+        "id": 800,
         "name": "Day",
         "description": "Set time to day",
         "mc_command": true,
         "command": "time set day",
         "price": 1,
-        "icon": "https://bit.ly/3JhFsOz"
+        "icon": "https://bit.ly/3JhFsOz",
+        "subcategory": "time"
     },
-
     {
-        "id": 2,
+        "id": 801,
         "name": "Night",
         "description": "Set time to night",
         "mc_command": true,
         "command": "time set night",
         "price": 1,
-        "icon": "https://bit.ly/3EezdHh"
-    },
-    
-    {
-        "id": 3,
-        "name": "Zombie",
-        "description": "Spawn a zombie",
-        "mc_command": true,
-        "command": "execute at @a run summon minecraft:zombie ^ ^ ^",
-        "price": 1,
-        "icon": "https://bit.ly/3F9AEYV"
-    },
-    {
-        "id": 4,
-        "name": "Zombie TEST",
-        "description": "Spawn a zombie TEST",
-        "mc_command": true,
-        "command": "execute at @a run summon minecraft:zombie ^ ^ ^",
-        "price": 1,
-        "icon": "https://bit.ly/3F9AEYV"
-    },
-    {
-        "id": 5,
-        "name": "Ender Dragon",
-        "description": "Spawn a ender dragon",
-        "mc_command": true,
-        "command": "execute at @a run summon minecraft:ender_dragon ^ ^ ^",
-        "price": 1,
-        "icon": "https://i.imgur.com/FYfja.png"
+        "icon": "https://bit.ly/3EezdHh",
+        "subcategory": "time"
     }
-
 ]

@@ -47,7 +47,7 @@ const success_popup = (price) => {
 	audio.load();
 	audio.play();
 
-	price_text.innerHTML = `-${price}¥`;
+	price_text.innerHTML = `-${price}🪙`;
 	// add transform animation to price_text
 	price_text.classList.add("price_popup_animation");
 	setTimeout(() => {

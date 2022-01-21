@@ -8,16 +8,40 @@
 {% block content %}
 
     <div class="container">
-        <div id="style_wrapper" style="background: #297faa !important">
-            <h3 class="titel">Commands:</h3>
-            <div id="commands">
-                {% for command in all_commands %}
-                    <div class="command">
-                        <h4 class="command_name">{{ command.name }}</h4>
-                        <p class="command_description">{{ command.description }}</p>
-                        <p class="command_price">Price: {{ command.price }} ¥</p>
-                        <img class="command_img"  src="{{command.icon}}"></img>
+        <div id="style_wrapper" style="background: #297faa !important; margin-bottom: 30px">
+            <h3 class="titel">Commands</h3>
 
+            <div id="command_search" action="">
+                <label for="command_search">Search Commands</label>
+                <input id="input_search">
+            </div>
+            
+            <label id="sort_by" for="commands">Category:</label>
+            <select name="commands" id="filter" onchange="filter_options()">
+                <option value="all" selected="selected" >All</option>
+                <option value="spawn">Spawn Commands</option>
+                <option value="weather">Weather Commands</option>
+                <option value="time">Time Commands</option>
+
+            </select>
+
+            <label id="sort_by" for="price">Price:</label>
+            <select name="price" id="price" onchange="filter_options()">
+                <option value="all" selected="selected" >All</option>
+                <option value="high_price">Highest Price</option>
+                <option value="low_price">Lowest Price</option>
+            </select>
+
+            <div id="commands">
+                {% for command in all_commands%}
+                    <div class="command" data-category="{{command['subcategory']}}">
+                        <h4 class="command_name">{{ command.name }}</h4>
+                        <section id="description">
+                            <p class="command_description">{{ command.description }}</p>
+                        </section>
+                        <p class="command_price"> {{ command.price }} 🪙</p>
+                        <img class="command_img"  src="{{command.icon}}">
+                    
                         {% if command.mc_command %}
                             <button class="command_button" onclick="mc_command('{{command.id}}', {{ command.price }})">Run</button>
                         {% else %}
@@ -27,8 +51,8 @@
                     </div>
                 {% endfor %}
             </div>
-         <img id="the_wok" style="width: 100px; height: 100px;"  src="data:image/jpeg;base64,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" alt="the wok">
         </div>
+
     </div>
     
     <div id="price_popup"></div>
@@ -36,5 +60,6 @@
         <img src="{{url_for('static', filename='images/bad_citizen.png')}}" alt="bad citizen" >
         <p>没有足够的资金 (Not enough points)</p>
     </div>
+    <script src="{{url_for('static', filename='js/filter.js')}}"></script>
 
 {% endblock %}
