@@ -5,7 +5,7 @@
         "description": "Set time to day",
         "mc_command": true,
         "command": "time set day",
-        "price": 1000,
+        "price": 1,
         "icon": "https://bit.ly/3JhFsOz"
     },
 
@@ -15,7 +15,7 @@
         "description": "Set time to night",
         "mc_command": true,
         "command": "time set night",
-        "price": 800,
+        "price": 1,
         "icon": "https://bit.ly/3EezdHh"
     },
     
@@ -25,7 +25,7 @@
         "description": "Spawn a zombie",
         "mc_command": true,
         "command": "execute at @a run summon minecraft:zombie ^ ^ ^",
-        "price": 600,
+        "price": 1,
         "icon": "https://bit.ly/3F9AEYV"
     },
     {
@@ -43,7 +43,7 @@
         "description": "Spawn a ender dragon",
         "mc_command": true,
         "command": "execute at @a run summon minecraft:ender_dragon ^ ^ ^",
-        "price": 900,
+        "price": 1,
         "icon": "https://i.imgur.com/FYfja.png"
     }
 
