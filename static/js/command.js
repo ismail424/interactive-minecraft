@@ -1,5 +1,6 @@
 var audio = new Audio(`/static/sounds/success.mp3`);
 var fail_audio = new Audio(`/static/sounds/fail.mp3`);
+
 const mc_command = (id, price) => {
 	console.log("mc_command", id, price);
 	socket.emit('mc-command', {"username": user_info["username"], "command_id": id});
@@ -57,7 +58,6 @@ const success_popup = (price) => {
 			all_buttons[i].disabled = false;
 		}
 	}, 900);
-
 }
 
 const unsuccess_popup = () => {
@@ -69,5 +69,4 @@ const unsuccess_popup = () => {
 		fail_audio.pause();
 		not_enough_money.style.display = "none";
 	}, 5000);
-
 }

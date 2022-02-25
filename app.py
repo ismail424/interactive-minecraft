@@ -153,6 +153,7 @@ def run_mc_command(data):
         fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
         print(exc_type, fname, exc_tb.tb_lineno)
         pass
+
 @socketio.on('get_all_users')
 def update_all_users():
     usernames = get_all_usernames()
@@ -214,7 +215,6 @@ def remove_points(username:str, points:int):
         if user["username"] == username:
             user["points"] -= points
             socketio.emit('points', {'points': user["points"], 'username': user["username"]})
-
 
 if __name__ == "__main__":
     sched = BackgroundScheduler()
